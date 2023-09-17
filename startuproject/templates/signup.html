@@ -1,0 +1,119 @@
+{% extends 'base.html' %} 
+{% block title %} - Signup page {% endblock title %}
+{% block body %}
+{% load socialaccount %}
+
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .already-have-account {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2 class="text-center">SignUp</h2>
+        <hr>
+
+        <a href="{% provider_login_url 'google' %}" class="alert-link text-center bg-sucess">
+            <i class="fa-brands fa-google"></i>
+        </a>
+        
+
+        {% include "messages.html" %}
+        <form method="post" action="/authapp/signup/">{% csrf_token %}
+
+            
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <input type="checkbox" onclick="showPassword()"><span id="sp">Show Password</span>
+            <i class="fa-solid fa-eye"></i>
+<br>
+            <small>Password must include atleast [1-9][a-z][A-Z][!@#$%^&*]</small>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="button">Sign Up</button>
+            </div>
+
+        </form>
+        <div class="already-have-account">
+            Already have an account? <a href="/authapp/login/">Log In</a>
+        </div>
+    </div>
+</body>
+</html>
+
+
+{% endblock body %}
+{% block scr %}
+<script>
+
+function showPassword() {
+    var x = document.getElementById("password");
+    var z = document.getElementById("confirm-password");
+    var y = document.getElementById("sp");
+    if (x.type == "password" && z.type=="password") {
+        x.type = "text";
+        z.type = "text";
+        y.innerText = "Hide Password";
+    } else {
+        x.type = "password";
+        z.type = "password";
+        y.innerText = "Show Password";
+    }
+}
+</script>
+    
+{% endblock scr %}

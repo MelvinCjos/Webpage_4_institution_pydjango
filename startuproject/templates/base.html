@@ -1,0 +1,113 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Startup training Institute
+        {% block title %}
+        
+        {% endblock title %}
+    </title>
+
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">S.T.I.Kerala</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link {% block home %}
+              {% endblock home %}" href="/">Home
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% block c %}
+              
+              {% endblock c %}" href="/courses/">Courses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% block attendance %}
+              
+              {% endblock attendance %}" href="/attendance/">Attendance</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% block enroll %}
+              
+              {% endblock enroll %}" href="/enroll/">Enroll</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% block About %}
+      About
+              {% endblock About %}" href="/about/">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% block Contacts %}
+              
+              {% endblock Contacts %}" href="/contacts/">Contact Us</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Services</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Training Professional Courses</a>
+                <a class="dropdown-item" href="#">Freelancing</a>
+                <a class="dropdown-item" href="#">Onsite Training</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Online or Offline Training</a>
+              </div>
+            </li>
+
+            {% if not request.user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Welcome</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/authapp/signup/">Signup</a>
+                <a class="dropdown-item" href="/authapp/login/">Login</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/authapp/reset-password/">ResetPassword</a>
+              </div>
+            </li>
+
+            {% else %}
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="authapp/logout/" role="button" aria-haspopup="true" aria-expanded="false">{{user.first_name}}</a>
+              <div class="dropdown-menu">
+              <a class="dropdown-item" href="/candidateprofile/">My Profile</a>
+              <a class="dropdown-item" href="/authapp/logout/">Logout</a>
+              </div>
+            </li>
+            {% endif %}
+             
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-sm-2" type="search" placeholder="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    {% block body %}
+    
+    {% endblock body %}
+
+    {% block scr %}
+    
+    {% endblock scr %}
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+  </body>
+</html>

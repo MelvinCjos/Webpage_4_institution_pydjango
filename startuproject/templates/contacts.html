@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}
+- Contacts
+{% endblock title %}
+{% block Contacts %}
+active
+{% endblock Contacts %}
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us</title>
+    {% include "messages.html" %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div style="max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+        <h2 style="text-align: center;">Contact Us</h2>
+        <form action="/contacts/" method="POST">{% csrf_token %}
+            <fieldset style="border: none; padding: 0;">
+                <legend style="font-weight: bold; margin-bottom: 10px;">Personal Information</legend>
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <i class="fas fa-user" style="margin-right: 10px;"></i>
+                    <input type="text" placeholder="Name" name="name" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px;">
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <i class="fas fa-envelope" style="margin-right: 10px;"></i>
+                    <input type="email" placeholder="Email" name="email" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px;">
+                </div>
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <i class="fas fa-phone" style="margin-right: 10px;"></i>
+                    <input type="tel" placeholder="Phone" name="phone" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px;">
+                </div>
+            </fieldset>
+            
+            <fieldset style="border: none; padding: 0; margin-top: 20px;">
+                <legend style="font-weight: bold; margin-bottom: 10px;">Message</legend>
+                <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
+                    <i class="fas fa-question" style="margin-right: 10px; margin-top: 4px;"></i>
+                    <textarea placeholder="How can we help you?" name="message" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 3px; height: 100px;"></textarea>
+                </div>
+            </fieldset>
+            
+            <button type="submit" style="display: block; width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 3px; cursor: pointer; margin-top: 20px;">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+{% endblock body %}
